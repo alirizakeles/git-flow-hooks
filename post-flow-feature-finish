@@ -2,7 +2,7 @@
 REPO_DIR=$(git rev-parse --show-toplevel)
 DOT_GIT_DIR=$(git rev-parse --git-dir)
 if [ "$DOT_GIT_DIR" = ".git" ]; then
-	DOT_GIT_DIR="$REPO_DIR"/"$DOT_GIT_DIR"
+  DOT_GIT_DIR="$REPO_DIR"/"$DOT_GIT_DIR"
 fi
 HOOKS_DIR="$DOT_GIT_DIR"/hooks
 . "$HOOKS_DIR"/gitflow-functions
@@ -11,7 +11,7 @@ source "$HOOKS_DIR/config.sh"
 
 HOOK_ERROR=0
 
-for module in $pre_commit_modules; do
+for module in $post_flow_feature_finish_modules; do
     module_path="$HOOKS_MODULES_DIR/$module"
     [ ! -e $module_path ] && continue
     . "$HOOKS_MODULES_DIR/$module"
@@ -21,9 +21,8 @@ for module in $pre_commit_modules; do
 done
 
 if [ $HOOK_ERROR -eq 1 ] ; then
-	echo -e $'\e[31mCommit errors detected... commit cancelled\e[0m'
+  echo -e $'\e[31mPost flow feature modules did not complete successfully... feature finish cancelled\e[0m'
 else
-	echo -e $'\e[32mNo errors... code committed\e[0m'
+  echo -e $'\e[32mNo errors... feature finished\e[0m'
 fi
-
 exit $HOOK_ERROR

@@ -12,7 +12,7 @@ MESSAGE=$(cat $1)
 LEN=$(echo ${#MESSAGE})
 
 if [ $LEN -lt 8 ]; then
-    echo "${CROSS}${RED} Such a short commit message? Give this commit a real meaning with a good commit message!${WHITE}"
+    echo -e $'\e[31mCommit message too short\3[0m'
     echo ""
     HOOK_ERROR=1
 fi
