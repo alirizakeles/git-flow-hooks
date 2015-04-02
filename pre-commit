@@ -7,9 +7,9 @@ fi
 HOOKS_DIR="$DOT_GIT_DIR"/hooks
 . "$HOOKS_DIR"/gitflow-functions
 
-HOOK_ERROR=0
+source "$HOOKS_DIR/config.sh"
 
-echo ${WHITE}
+HOOK_ERROR=0
 
 for module in $pre_commit_modules; do
     module_path="$HOOKS_MODULES_DIR/$module"
@@ -21,10 +21,9 @@ for module in $pre_commit_modules; do
 done
 
 if [ $HOOK_ERROR -eq 1 ] ; then
-	echo "\n${CROSS}${RED} Time to fix your code!\n"
+	echo -e $'\n\e[31mCommit errors detected... commit cancelled\e[0m\n'
 else
-	echo "\n${CHECK}${GREEN} Good job!\n"
+	echo -e $'\n\e[32mNo errors... code committed\e[0m\n''
 fi
 
-echo ${WHITE}
 exit $HOOK_ERROR
