@@ -10,14 +10,14 @@ HOOKS_MODULES_DIR="$HOOKS_DIR"/modules
 
 REPO_DIR="$(git rev-parse --show-toplevel 2>/dev/null)"
 if [ ! -f "$REPO_DIR"/.git/hooks_config ]; then
-	echo -e '\e[31m' && echo "Missing file $REPO_DIR/.git/hooks_config" && echo -e $'\e[0m'
+	echo '\e[31m' && echo "Missing file $REPO_DIR/.git/hooks_config" && echo $'\e[0m'
 	exit 127
 fi
 . "$REPO_DIR"/.git/hooks_config
 
 type _update_version >/dev/null 2>&1;
 if [ $? -eq 127 ]; then
-	echo -e '\e[31m' && echo "Missing function _update_version!\nThis function should be declared in $REPO_DIR/.git/hooks_config" && echo -e $'\e[0m'
+	echo '\e[31m' && echo "Missing function _update_version!\nThis function should be declared in $REPO_DIR/.git/hooks_config" && echo $'\e[0m'
 	exit 127
 fi
 
@@ -138,15 +138,15 @@ gitflow_contains() {
 }
 
 gitflow_fail() {
-	echo -e $'\e[31m' && echo "\t$1"  && echo -e $'\e[0m'
+	echo $'\e[31m' && echo "\t$1"  && echo $'\e[0m'
 }
 
 gitflow_ok() {
-	echo -e $'\e[32m' && echo "\t$1"  && echo -e $'\e[0m'
+	echo $'\e[32m' && echo "\t$1"  && echo $'\e[0m'
 }
 
 h1() {
-	echo -e $'\e[97m' && echo "$1"  && echo -e $'\e[0m'
+	echo $'\e[97m' && echo "$1"  && echo $'\e[0m'
 }
 
 # Function to get a list of files that will be committed by extension

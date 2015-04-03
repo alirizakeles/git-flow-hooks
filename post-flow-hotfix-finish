@@ -13,7 +13,7 @@ HOOK_ERROR=0
 
 for module in $post_flow_hotfix_finish_modules; do
     module_path="$HOOKS_MODULES_DIR/$module"
-    [ ! -e $module_path ] && continue
+    [ ! $module_path ] && continue
     . "$HOOKS_MODULES_DIR/$module"
     if [ $? -eq 1 ] ; then
         HOOK_ERROR=1
@@ -21,8 +21,8 @@ for module in $post_flow_hotfix_finish_modules; do
 done
 
 if [ $HOOK_ERROR -eq 1 ] ; then
-  echo -e $'\e[31mPost flow hotfix modules did not complete successfully... hotfix finish cancelled\e[0m'
+  echo $'\e[31mPost flow hotfix modules did not complete successfully... hotfix finish cancelled\e[0m'
 else
-  echo -e $'\e[32mNo errors... hotfix finished\e[0m'
+  echo $'\e[32mNo errors... hotfix finished\e[0m'
 fi
 exit $HOOK_ERROR

@@ -35,5 +35,5 @@ if [-e "$REPO_DIR/config/slack_settings]
     json="{\"channel\": \"#$channel\", \"text\": \"$escapedText\", \"link_names\": 1, \"username\":\"Git Flow\"}"
     curl -s -d "payload=$json" "https://$team.slack.com/services/hooks/incoming-webhook?token=$token"
   else
-    echo -e $'\e[31mNo slack settings file found in config/slack_settings... skipping\e[0m'
+    echo $'\e[31mNo slack settings file found in config/slack_settings... skipping\e[0m'
 fi
