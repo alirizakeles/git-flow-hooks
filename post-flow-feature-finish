@@ -11,7 +11,7 @@ source "$HOOKS_DIR/config.sh"
 
 HOOK_ERROR=0
 
-for module in $post_flow_release_finish_modules; do
+for module in $post_flow_feature_finish_modules; do
     module_path="$HOOKS_MODULES_DIR/$module"
     [ ! $module_path ] && continue
     . "$HOOKS_MODULES_DIR/$module"
@@ -21,8 +21,8 @@ for module in $post_flow_release_finish_modules; do
 done
 
 if [ $HOOK_ERROR -eq 1 ] ; then
-  echo $'\e[31mPost flow release modules did not complete successfully... release finish cancelled\e[0m'
+  echo $'\e[31mPost flow feature modules did not complete successfully... feature finish cancelled\e[0m'
 else
-  echo $'\e[32mNo errors... release finished\e[0m'
+  echo $'\e[32mNo errors... feature finished\e[0m'
 fi
 exit $HOOK_ERROR

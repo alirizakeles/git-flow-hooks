@@ -13,7 +13,7 @@ HOOK_ERROR=0
 
 for module in $pre_commit_modules; do
     module_path="$HOOKS_MODULES_DIR/$module"
-    [ ! -e $module_path ] && continue
+    [ ! $module_path ] && continue
     . "$HOOKS_MODULES_DIR/$module"
     if [ $? -eq 1 ] ; then
         HOOK_ERROR=1
@@ -21,9 +21,9 @@ for module in $pre_commit_modules; do
 done
 
 if [ $HOOK_ERROR -eq 1 ] ; then
-	echo -e $'\n\e[31mCommit errors detected... commit cancelled\e[0m\n'
+	echo $'\e[31mCommit errors detected... commit cancelled\e[0m'
 else
-	echo -e $'\n\e[32mNo errors... code committed\e[0m\n''
+	echo $'\e[32mNo errors... code committed\e[0m'
 fi
 
 exit $HOOK_ERROR
